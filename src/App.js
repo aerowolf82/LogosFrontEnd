@@ -6,21 +6,18 @@ import Header from './Components/Header'
 //import FavoriteList from './Components/FavoriteList'
 import { useEffect, useState } from 'react'
 //import Context from './Context.js'
-//import PokemonList from './Components/PokemonList';
+import SpaceCraftList from './Components/SpaceCraftList';
 
 async function getSpaceCraft() {
-  let res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
+  let res = await fetch("https://lldev.thespacedevs.com/2.2.0/spacecraft/"); //fetch at localhost:3001/spacecraft
   let data = await res.json();
   return data;
 }
-
-
 
 function App() {
 
   let [spaceData, setSpaceData] = useState([]);
     
-  console.log(spaceData);
   useEffect(() => {
     let mounted = true;
     getSpaceCraft()
@@ -48,10 +45,10 @@ function App() {
           </nav>
         </header>
 
-        {/* <Route path="/pokemon">
-          <PokemonList spaceData = {spaceData} />
+        <Route path="/spacecraft">
+          <SpaceCraftList spaceData = {spaceData} />
         </Route>
-        <Route path="/favorites">
+       {/*  <Route path="/favorites">
           <FavoriteList />
         </Route> */}
         <Route exact path="/">

@@ -1,45 +1,51 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Router } from 'react-router-dom';
 import App from './App';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
+import {createMemoryHistory} from 'history'
+import SpaceCraft from './Components/SpaceCraft';
+import ReactRouter from 'react-router';
 
 describe('Testing the /spacecraft endpoint', () => {
   const server = setupServer(
-    rest.get('http://localhost:3001/spacecraft/', (request, response, context) => {
+    //change get request location to intercept calls to the server
+    rest.get('https://lldev.thespacedevs.com/2.2.0/spacecraft/', (request, response, context) => {
       return response(
         context.json(
-
-          [{
-            "id": 1,
-            "name": "Mercury-over9000",
-            "description": "the satellite will knock your socks off",
-            "family": "Mercury",
-            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Mariner_10.jpg/1200px-Mariner_10.jpg",
-            "launch vehicle": "TO THE MOON",
-            "history": "Mercury is a planet. lets explore it",
-            "launch_date": "1776",
-            "height": "over 9000",
-            "diameter": "also over 9000",
-            "pad_name": ""
-          },
           {
-            "movieId": 2,
-            "metascore": "90",
-            "boxOffice": "N/A",
-            "rated": "PG",
-            "director": "George Lucas",
-            "title": "Star Wars: Episode IV - A New Hope",
-            "actors": "Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing",
-            "response": "True",
-            "year": "1977",
-            "poster": "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-            "genre": "Action, Adventure, Fantasy, Sci-Fi"
+            //change to an array of object when receiving data from the actual server
+            results: [{
+              "id": 1,
+              "name": "Mercury-over9000",
+              "description": "the satellite will knock your socks off",
+              "family": "Mercury",
+              "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Mariner_10.jpg/1200px-Mariner_10.jpg",
+              "launch vehicle": "TO THE MOON",
+              "history": "Mercury is a planet. lets explore it",
+              "launch_date": "1776",
+              "height": "over 9000",
+              "diameter": "also over 9000",
+              "pad_name": "THIS IS A TEST OF THE GIANT VOICE",
+              "pad_location": "atlantis"
+            },
+            {
+              "id": 2,
+              "name": "RadarSat",
+              "description": "radar for days",
+              "family": "RadarSat",
+              "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Mariner_10.jpg/1200px-Mariner_10.jpg",
+              "launch vehicle": "Falcon-9",
+              "history": "you get radar and you get radar!",
+              "launch_date": "2021",
+              "height": "9m",
+              "diameter": "5m",
+              "pad_name": "SLC-4",
+              "pad_location": "VSFB"
+            }]
           }
-
-          ]
+          
         ))
-
-
     })
   )
 
@@ -47,9 +53,44 @@ describe('Testing the /spacecraft endpoint', () => {
   afterEach(() => server.resetHandlers())
   afterAll(() => server.close())
   
-  test('renders learn react link', () => {
+  it('should load the page', () => {
     render(<App />);
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
+    const home = screen.getAllByText(/home/i);
+    expect(home[0]).toBeInTheDocument();
+    const spacecraft = screen.getAllByText(/spacecraft/i);
+    expect(spacecraft[0]).toBeInTheDocument();
+  });
+
+  it('should render a list of items from our mock data', async () => {
+    render(<App />);
+    let wait = await screen.findByText(/home/i);
+    fireEvent.click(screen.getByText(/space craft list/i))
+    wait = await screen.findByText(/Mercury-over9000/i);
+    expect(screen.getByText(/Mercury-over9000/i)).toBeInTheDocument();
+    expect(screen.getByText(/RadarSat/i)).toBeInTheDocument();
+  });
+
+});
+
+
+describe('Testing the individual spacecraft endpoint', () => {
+  it('should load the page', async () => {
+
+    const history = createMemoryHistory()
+    const route = 'http://localhost:3000/spacecraft'
+    history.push(route)
+
+    jest.spyOn(ReactRouter, 'useParams').mockReturnValue({ spaceId: 0 });
+
+    render(
+      <Router history={history}>
+        <SpaceCraft spaceData={[{id:1, name:'Mercury-over9000'}]} />
+      </Router>
+    );
+    let wait = await screen.findByText('Mercury-over9000');
+    const name = screen.getByText('Mercury-over9000');
+    expect(name).toBeInTheDocument();
   });
 });
+
+    

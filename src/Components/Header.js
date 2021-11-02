@@ -23,8 +23,8 @@ const Header = () => {
     return (
         <div className='header'>
             <HeaderLink page='home' selected={page === 'home'} />
-            {/* <HeaderLink page='pokemon' selected={page === 'pokemon'} />
-            <HeaderLink page='favorites' selected={page === 'favorites'} /> */}
+            <HeaderLink page='spacecraft' selected={page === 'spacecraft'} />
+            {/* <HeaderLink page='favorites' selected={page === 'favorites'} /> */}
         </div>
     );
 };

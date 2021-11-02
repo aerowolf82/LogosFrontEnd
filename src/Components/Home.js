@@ -1,9 +1,9 @@
 import { Switch, Route, Link} from "react-router-dom";
-// import PokemonList from './PokemonList.js'
+ import SpaceCraftList from './SpaceCraftList.js'
 // import FavoriteList from './FavoriteList.js'
 import {useState} from "react"
 
-function Home({pokeData}) {
+function Home({spaceData}) {
     // let [favorites,setFavorites] = useState([]);
     // console.log('home favorites', favorites)
     
@@ -11,14 +11,14 @@ function Home({pokeData}) {
 
         <div>
             <h1>
-                Home
+                Space Launch Database
             </h1>
-            {/* <Link to="./pokemon">Pokemon List</Link> */}
+            <Link to="./spacecraft">Space Craft List</Link>
             <Switch>
-                {/* <Route path="/pokemon">
-                    <PokemonList pokeData = {pokeData} favorites = {favorites}/>
+                <Route path="/spacecraft">
+                    <SpaceCraftList spaceData = {spaceData}/>
                 </Route>
-                <Route path="/favorites">
+                {/* <Route path="/favorites">
                     <FavoriteList />
                 </Route> */}
             </Switch>   
