@@ -38,18 +38,25 @@ describe("Spacecraft Page", () => {
 
 describe("Individual Spacecraft Page", () => {
     it("Should search for a spacecraft given a query", () => {
-        // cy.contains(`SpaceCraft`)
-        // expect($el).to.contain('text')
-
         cy.getByRole(`Combobox`)
             .click()
             // cy.get(`[Title="Combobox"]`).click()
             .type(`Mercury No.7{enter}`)
-        expect(cy.contains('results'))
+        expect(cy.contains('results')) //if it has a results object
         expect(cy.contains('Mercury No.7'))
     });
+});
 
-})
+describe("Individual Pad Page", () => {
+    it("Should search for a pad given a query", () => {
+        cy.getByRole(`Combobox`)
+            .click()
+            // cy.get(`[Title="Combobox"]`).click()
+            .type(`Space Launch Complex 3W{enter}`)
+        expect(cy.contains('results')) //if it has a results object
+        expect(cy.contains('Space Launch Complex 3W'))
+    });
+});
     //     /*
     //     cy.location().should((loc) => {
     //         expect(loc.hash).to.eq('#/users/123/edit')

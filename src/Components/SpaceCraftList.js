@@ -7,10 +7,14 @@ import Combobox from "react-widgets/Combobox";
 
 function SpaceCraftList({ spaceData, family, favorites }) {
     let match = useRouteMatch()
-    console.log(family)
 
-    function handleChange(e) {
-        console.log(e.target.value)
+    function handleSelect(e) {
+        // async function getSpaceCraftDetails() {
+        //     let res = await fetch(``); //fetch at localhost:3001/spacecraft
+        //     let data = await res.json();
+        //     return data;
+        // }
+        //route to a new page displaying only content from the get request
     }
 
     return (
@@ -26,7 +30,7 @@ function SpaceCraftList({ spaceData, family, favorites }) {
                     return fam.name
                 })}
                 placeholder="Search for a family of spacecraft!"
-                onChange={handleChange()}
+                onSelect={handleSelect}
             />
             <div>
                 {(spaceData.map((spaceData, index) => (
