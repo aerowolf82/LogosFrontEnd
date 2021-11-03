@@ -38,7 +38,15 @@ describe("Spacecraft Page", () => {
 
 describe("Individual Spacecraft Page", () => {
     it("Should search for a spacecraft given a query", () => {
-        cy.
+        // cy.contains(`SpaceCraft`)
+        // expect($el).to.contain('text')
+
+        cy.getByRole(`Combobox`)
+            .click()
+            // cy.get(`[Title="Combobox"]`).click()
+            .type(`Mercury No.7{enter}`)
+        expect(cy.contains('results'))
+        expect(cy.contains('Mercury No.7'))
     });
 
 })
