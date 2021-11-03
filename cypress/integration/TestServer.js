@@ -22,7 +22,9 @@ describe("Home page", () => {
         //assert
         cy.location('pathname').should('eq', '/spacecraft')
     });
+})
 
+describe("Spacecraft Page", () => {
     it("Should redirect to /spacecraft/:spacecraftid when an individual spacecraft is clicked", () => {
         //act
         cy.get('.header > [href="/spacecraft"]')
@@ -34,9 +36,11 @@ describe("Home page", () => {
     });
 })
 
-describe("Individual Rocket Page", () => {
+describe("Individual Spacecraft Page", () => {
+    it("Should search for a spacecraft given a query", () => {
+        cy.
+    });
 
-    
 })
     //     /*
     //     cy.location().should((loc) => {
@@ -64,9 +68,9 @@ describe("Individual Rocket Page", () => {
     //     cy.get('Mercury No.7')
     //       .click()
     //     cy.url().should('include', 'Mercury')
-        
+
     // })
-        
+
     // // })
 
 /*
@@ -114,4 +118,4 @@ describe("Individual Rocket Page", () => {
     //user posts will be added to movie reviews
 
     //users are able to login and register for account
-    
+

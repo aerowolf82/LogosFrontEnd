@@ -1,15 +1,14 @@
-import { useRouteMatch} from "react-router";
-import {Switch, Route, NavLink} from 'react-router-dom';
+import { useRouteMatch } from "react-router";
+import { Switch, Route, NavLink } from 'react-router-dom';
 import Pads from './Pads.js'
 import "react-widgets/styles.css";
 import './SpaceCraftList.css';
 import Combobox from "react-widgets/Combobox";
 
-function PadsList({padData, favorites}) {
-        console.log(padData)
-        let match = useRouteMatch()
-    
-        return (
+function PadsList({ padData, favorites }) {
+    let match = useRouteMatch()
+
+    return (
 
         <div>
             <h1>
@@ -22,17 +21,17 @@ function PadsList({padData, favorites}) {
                 placeholder="Search for a pad!"
             />
             <div>
-                {(padData.map((padData,index)=>(
+                {(padData.map((padData, index) => (
                     <NavLink className="NavLink" to={`${match.url}/${index}`} key={`nav${padData.id}`}>
                         {padData.pad_name}
                     </NavLink>
                 )))}
             </div>
-                <Switch>
-                    <Route path={`${match.path}/:padId`}>
-                        <Pads padData = {padData} key={padData.id}/>
-                    </Route>
-                </Switch>
+            <Switch>
+                <Route path={`${match.path}/:padId`}>
+                    <Pads padData={padData} key={padData.id} />
+                </Route>
+            </Switch>
 
         </div>
     );
