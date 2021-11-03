@@ -5,7 +5,10 @@ import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import {createMemoryHistory} from 'history'
 import SpaceCraft from './Components/SpaceCraft';
+import SpaceCraftList from './Components/SpaceCraftList';
 import ReactRouter from 'react-router';
+import { act } from 'react-dom/test-utils';
+import userEvent from '@testing-library/user-event'
 
 describe('Testing the /spacecraft endpoint', () => {
   const server = setupServer(
@@ -72,7 +75,6 @@ describe('Testing the /spacecraft endpoint', () => {
 
 });
 
-
 describe('Testing the individual spacecraft endpoint', () => {
   it('should load the page', async () => {
 
@@ -92,5 +94,32 @@ describe('Testing the individual spacecraft endpoint', () => {
     expect(name).toBeInTheDocument();
   });
 });
+
+describe('Testing dropdown menus', () => {
+  it('should contain a dropdowns', async () => {
+
+    const history = createMemoryHistory()
+    const route = 'http://localhost:3000/'
+    history.push(route)
+
+    jest.spyOn(ReactRouter, 'useRouteMatch').mockReturnValue({ url: '/spacecraft', path: '/spacecraft'});
+
+    render(
+      <Router history={history}>
+        <SpaceCraftList spaceData={[{id:1, name:'BatSat'}]} family ={[{id: 0, name: 'I\'m batman'}]} />
+      </Router>
+    );
+    const dropdown = screen.getAllByRole('combobox');
+    expect(dropdown).toHaveLength(1);
+    //update this test to get rid of "wrapped in act() warning"
+    userEvent.type(dropdown[0], 'I\'m bat')
+    userEvent.type(dropdown[0], '{arrowdown}')
+    userEvent.type(dropdown[0], '{enter}')
+    expect(dropdown[0].value).toBe('I\'m batman')
+  });
+});
+
+//test localhost/pads
+//test localhost/pad/:padid
 
     

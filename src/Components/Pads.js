@@ -11,9 +11,9 @@ import {useEffect, useState} from "react"
 // }
 
 
-const SpaceCraft = ( {spaceData}) =>{
+const Pads = ( {padData}) =>{
     
-    let { spaceId } = useParams();
+    let { padId } = useParams();
     // const [indPoke, setPoke] = useState([])
 
     
@@ -35,7 +35,7 @@ const SpaceCraft = ( {spaceData}) =>{
     return (
         <>
             <h2>
-                {spaceData[spaceId]?.name}
+                {padData[padId]?.pad_name}
             </h2>
             {/* <img src = {indPoke.sprites?.other["official-artwork"].front_default} alt = 'pika...no?'/>
             <button>Add To Favorites</button>
@@ -60,4 +60,4 @@ const SpaceCraft = ( {spaceData}) =>{
         </>
     )
 }
-export default SpaceCraft;
+export default Pads;

@@ -24,6 +24,7 @@ const Header = () => {
         <div className='header'>
             <HeaderLink page='home' selected={page === 'home'} />
             <HeaderLink page='spacecraft' selected={page === 'spacecraft'} />
+            <HeaderLink page='pads' selected={page === 'pads'} />            
             {/* <HeaderLink page='favorites' selected={page === 'favorites'} /> */}
         </div>
     );

@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Mercury No.7", "family_id": 1, "description": "Mercury No.7 is the Mercury capsule used for the Mercury-Redstone 3 - callsign \"Freedom 7\" - mission launched on May 5, 1961 and piloted by astronaut Alan Shepard.", "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launcher_images/redstone_image_20190207032627.jpeg", "history": "THIS IS A TEST OF THE GIANT VOICE", "launch_date": "1961-05-05T14:49:35Z", "height": 3.3, "diameter": 1.8, "pad_id": 2 },
+  { "id": 2, "name": "Mercury-over9000", "family_id": 1, "description": "the satellite will knock your socks off", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Mariner_10.jpg/1200px-Mariner_10.jpg", "history": "Mercury is a planet. lets explore it", "launch_date": "1776", "height": 9000, "diameter": 9000, "pad_id": 3 },
+  { "id": 3, "name": "RadarSat", "family_id": 3, "description": "radar for days", "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Mariner_10.jpg/1200px-Mariner_10.jpg", "history": "you get radar and you get radar!", "launch_date": "2021", "height": 9, "diameter": 5, "pad_id": 15 }
+]

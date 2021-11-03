@@ -6,36 +6,42 @@ import Header from './Components/Header'
 //import FavoriteList from './Components/FavoriteList'
 import { useEffect, useState } from 'react'
 //import Context from './Context.js'
+import background from "./assets/background.jpg";
+import spacecraft from './spacecraft.json';
+import family from './Family.json';
+import pads from './Pads.json';
 import SpaceCraftList from './Components/SpaceCraftList';
+import PadsList from './Components/PadsList.js'
 
-async function getSpaceCraft() {
-  let res = await fetch("https://lldev.thespacedevs.com/2.2.0/spacecraft/"); //fetch at localhost:3001/spacecraft
-  let data = await res.json();
-  return data;
-}
+
+// async function getSpaceCraft() {
+//   let res = await fetch("https://lldev.thespacedevs.com/2.2.0/spacecraft/"); //fetch at localhost:3001/spacecraft
+//   let data = await res.json();
+//   return data;
+// }
 
 function App() {
-
   let [spaceData, setSpaceData] = useState([]);
+  let [familyData, setFamilyData] = useState([]);
+  let [padData, setPadData] = useState([]);
     
   useEffect(() => {
     let mounted = true;
-    getSpaceCraft()
-      .then(items => {
+    // getSpaceCraft()
+    //   .then(items => {
         if(mounted) {
-          setSpaceData(items.results)
+          setSpaceData(spacecraft);
+          setFamilyData(family);
+          setPadData(pads);
         }
-      })
+      // })
     return () => mounted = false;
   }, [])
 
 
-
-
-
-
   return (
-<Router>
+  <Router>
+    <div className ="background" style={{backgroundImage: `url(${background})`, width: '100%'}} >
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -46,19 +52,23 @@ function App() {
         </header>
 
         <Route path="/spacecraft">
-          <SpaceCraftList spaceData = {spaceData} />
+          <SpaceCraftList spaceData = {spaceData} family = {familyData} />
+        </Route>
+        <Route path="/pads">
+          <PadsList padData = {padData}/>
         </Route>
        {/*  <Route path="/favorites">
           <FavoriteList />
         </Route> */}
         <Route exact path="/">
-          <Home spaceData = {spaceData}/>
+          <Home spaceData = {spaceData} family = {familyData} padData = {padData}/>
         </Route>
         <Route exact path="/home">
-          <Home spaceData = {spaceData}/>
+          <Home spaceData = {spaceData} family = {familyData} padData = {padData}/>
         </Route>
       </div>
-    </Router>
+    </div>
+  </Router>
   );
 }
 
