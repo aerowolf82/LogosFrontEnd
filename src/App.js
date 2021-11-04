@@ -54,10 +54,11 @@ function App() {
     return () => mounted = false;
   }, [])
 
-
+console.log('spacedata from app.js',spaceData)
   return (
   <Router>
-    <div className ="background" style={{backgroundImage: `url(${background})`, width: '100%'}} >
+    {/* <div className ="background" style={{backgroundImage: `url(${background})`, width: '100%'}} > */}
+    <div className ="background" >
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
