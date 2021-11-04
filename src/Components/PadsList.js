@@ -4,7 +4,7 @@ import Pads from './Pads.js'
 import "react-widgets/styles.css";
 import './SpaceCraftList.css';
 import Combobox from "react-widgets/Combobox";
-import { Grid, Box, Card, CardContent, CardMedia} from '@mui/material'
+import { Grid, Box, Card, CardContent, CardMedia, Typography} from '@mui/material'
 
 async function getPadByName(e) {
     let res = await fetch(`http://localhost:3001/spacecraft?pad_name=${e}`);
@@ -61,9 +61,15 @@ function PadsList({ padData, setIsFilteredPads, isFilteredPads, filteredPadData,
                                         <NavLink className="NavLink" to={`${match.url}/${index}`} key={`nav${padData.id}`}>
                                             {padData.pad_name} {isFilteredPads = false}
                                         </NavLink>
-                                        <h3>{padData.location}</h3>
-                                        <h3>{padData.latitude}</h3>
-                                        <h3>{padData.longitude}</h3>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {`Location: ${padData.location} `}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {`Latitude: ${padData.latitude} `}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {`Longitude: ${padData.longitude} `}
+                                        </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -75,9 +81,15 @@ function PadsList({ padData, setIsFilteredPads, isFilteredPads, filteredPadData,
                                         <NavLink className="NavLink" to={`${match.url}/${index}`} key={`nav${padData.id}`}>
                                             {padData.pad_name}
                                         </NavLink>
-                                        <h3>{padData.location}</h3>
-                                        <h3>{padData.latitude}</h3>
-                                        <h3>{padData.longitude}</h3>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {`Location: ${padData.location} `}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {`Latitude: ${padData.latitude} `}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {`Longitude: ${padData.longitude} `}
+                                        </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>

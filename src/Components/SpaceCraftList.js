@@ -4,7 +4,7 @@ import SpaceCraft from './SpaceCraft.js'
 import "react-widgets/styles.css";
 import './SpaceCraftList.css';
 import Combobox from "react-widgets/Combobox";
-import { Grid, Box, Card, CardContent, CardMedia } from '@mui/material'
+import { Grid, Box, Card, CardContent, CardMedia, Typography } from '@mui/material'
 
 var filteredSpaceData = []
 
@@ -68,11 +68,21 @@ function SpaceCraftList({ spaceData, filteredSpaceData, setFilteredSpaceData, is
                                             <NavLink className="NavLink" to={`${match.url}/${spaceData.id}`} key={`nav${spaceData.id}`}>
                                                 {spaceData.name} {isFilteredSpace = false}
                                             </NavLink>
-                                            <h3>{spaceData.description}</h3>
-                                            <h3>{spaceData.history}</h3>
-                                            <h3>{spaceData.launch_date}</h3>
-                                            <h3>{spaceData.height}</h3>
-                                            <h3>{spaceData.diameter}</h3>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Description: ${spaceData.description} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`History: ${spaceData.history} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Launch Date: ${spaceData.launch_date} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Height: ${spaceData.height} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Diameter: ${spaceData.diameter} `}
+                                            </Typography>
                                         </CardContent>
                                     </Card>
                                 </Grid>
@@ -90,11 +100,21 @@ function SpaceCraftList({ spaceData, filteredSpaceData, setFilteredSpaceData, is
                                             <NavLink className="NavLink" to={`${match.url}/${spaceData.id}`} key={`nav${spaceData.id}`}>
                                                 {spaceData.name}
                                             </NavLink>
-                                            <h3>{spaceData.description}</h3>
-                                            <h3>{spaceData.history}</h3>
-                                            <h3>{spaceData.launch_date}</h3>
-                                            <h3>{spaceData.height}</h3>
-                                            <h3>{spaceData.diameter}</h3>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Description: ${spaceData.description} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`History: ${spaceData.history} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Launch Date: ${spaceData.launch_date} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Height: ${spaceData.height} `}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                            {`Diameter: ${spaceData.diameter} `}
+                                            </Typography>
                                         </CardContent>
                                     </Card>
                                 </Grid>
