@@ -15,7 +15,7 @@ function Home({spaceData, family, padData}) {
                 Space Launch Database
             </h1>
             <Link to="./spacecraft">Space Craft List</Link><br />
-            <Link to="./pads">Pads Craft List</Link>            
+            <Link to="./pads">Launch Pad List</Link>            
             <Switch>
                 <Route path="/spacecraft">
                     <SpaceCraftList spaceData = {spaceData} family = {family}/>
