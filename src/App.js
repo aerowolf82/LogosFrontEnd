@@ -18,24 +18,23 @@ import PadsList from './Components/PadsList.js'
 async function getSpaceCraft() {
   let res = await fetch("http://localhost:3001/spacecraft"); 
   let data = await res.json();
-  console.log(JSON.stringify(res));
   return data;
 }
 
 async function getPads() {
   let res = await fetch("http://localhost:3001/pads"); 
   let data = await res.json();
-  console.log(JSON.stringify(res));
   return data;
 }
 
 function App() {
   let [filteredSpaceData, setFilteredSpaceData] = useState([]);
+  let [filteredPadData, setFilteredPadData] = useState([]);
   let [spaceData, setSpaceData] = useState([]);
   let [familyData, setFamilyData] = useState([]);
   let [padData, setPadData] = useState([]);
   let [isFilteredSpace, setIsFilteredSpace] = useState(false);
-  let [isFilteredSpace, setIsFilteredSpace] = useState(false);
+  let [isFilteredPads, setIsFilteredPads] = useState(false);
 
     
   useEffect(() => {
@@ -74,11 +73,17 @@ function App() {
             family = {familyData} 
             setFilteredSpaceData = {setFilteredSpaceData} 
             filteredSpaceData = {filteredSpaceData} 
-            isFiltered = {isFiltered} 
-            setIsFiltered={setIsFiltered}/>
+            isFilteredSpace = {isFilteredSpace} 
+            setIsFilteredSpace={setIsFilteredSpace}/>
         </Route>
         <Route path="/pads">
-          <PadsList padData = {padData}/>
+          <PadsList 
+            padData = {padData}
+            isFilteredPads = {isFilteredPads}
+            setIsFilteredPads = {setIsFilteredPads}
+            filteredPadData = {filteredPadData}
+            setFilteredPadData = {setFilteredPadData}
+          />
         </Route>
        {/*  <Route path="/favorites">
           <FavoriteList />

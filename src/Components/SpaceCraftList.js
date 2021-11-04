@@ -13,19 +13,17 @@ async function getSpaceCraftByFamily(e) {
     return data;
 }
 
-function SpaceCraftList({ spaceData, filteredSpaceData, setFilteredSpaceData, isFiltered, setIsFiltered}) {
+function SpaceCraftList({ spaceData, filteredSpaceData, setFilteredSpaceData, isFilteredSpace, setIsFilteredSpace}) {
     let match = useRouteMatch()
 
     async function handleSelect(e) {
-        setIsFiltered(true);
+        setIsFilteredSpace(true);
         filteredSpaceData = await (getSpaceCraftByFamily(e))
         setFilteredSpaceData(filteredSpaceData)
-        return filteredSpaceData
     }
 
     function resetFilter(){
-        setIsFiltered(false);
-        return isFiltered;
+        setIsFilteredSpace(false);
     }
 
     return (
@@ -44,10 +42,10 @@ function SpaceCraftList({ spaceData, filteredSpaceData, setFilteredSpaceData, is
             />
             <button onClick={resetFilter}>Reset Filter</button>
             <div>
-                { isFiltered?
+                { isFilteredSpace?
                     filteredSpaceData.map((spaceData, index) => (
                         <NavLink className="NavLink" to={`${match.url}/${index}`} key={`nav${spaceData.id}`}>
-                            {spaceData.name} {isFiltered = false}
+                            {spaceData.name} {isFilteredSpace = false}
                         </NavLink>
                     )) :
                     spaceData.map((spaceData, index) => (

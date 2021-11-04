@@ -10,10 +10,9 @@ import ReactRouter from 'react-router';
 import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event'
 import PadsList from './Components/PadsList'
-import pad from './Components/Pad'
+import pad from './Components/Pads'
 
-//SPACECRAFT
-describe('Testing the /spacecraft endpoint', () => {
+describe('Testing the app', () => {
   it('should load the app', () => {
     render(<App />);
     const home = screen.getAllByText(/home/i);
@@ -23,7 +22,10 @@ describe('Testing the /spacecraft endpoint', () => {
     const pad = screen.getAllByText(/pads/i);
     expect(spacecraft[0]).toBeInTheDocument();
   });
+});
 
+//SPACECRAFT
+describe('Testing the /spacecraft endpoint', () => {
   it('should render a list of items from our mock data', async () => {
     render(<App />);
     let wait = await screen.findByText(/home/i);
@@ -55,7 +57,7 @@ describe('Testing the individual spacecraft endpoint', () => {
   });
 });
 
-describe('Testing dropdown menus', () => {
+describe('Testing dropdown menu in spacecraft', () => {
   it('should contain a dropdown', async () => {
 
     const history = createMemoryHistory()
@@ -64,17 +66,10 @@ describe('Testing dropdown menus', () => {
 
     jest.spyOn(ReactRouter, 'useRouteMatch').mockReturnValue({ url: '/spacecraft', path: '/spacecraft' });
 
-    // await act(async () => {
-    //   render(
-    //     <Router history={history}>
-    //       <SpaceCraftList spaceData={[{ id: 1, name: 'BatSat' }]} family={[{ id: 0, name: 'I\'m batman' }]} />
-    //     </Router>
-    //   )
-    // })
 
     render(
       <Router history={history}>
-        <SpaceCraftList spaceData={[{ id: 1, name: 'BatSat' }]} family={[{ id: 0, name: 'I\'m batman' }]} />
+        <SpaceCraftList spaceData={[{ id: 1, name: 'BatSat', family: 'I\'m batman' }]} />
       </Router>
     );
     const dropdown = screen.getAllByRole('combobox');
@@ -107,4 +102,30 @@ describe('Testing the /Pads url', () => {
     expect(pad[0]).toBeInTheDocument();
   });
 });
+
+describe('Testing dropdown menu in pad', () => {
+  it('should contain a dropdown', async () => {
+
+    const history = createMemoryHistory()
+    const route = 'http://localhost:3000/'
+    history.push(route)
+
+    jest.spyOn(ReactRouter, 'useRouteMatch').mockReturnValue({ url: '/pads', path: '/pads' });
+
+
+    render(
+      <Router history={history}>
+        <PadsList padData={[{ id: 1, pad_name: 'The rad pad had a dad'}]} />
+      </Router>
+    );
+    const dropdown = screen.getAllByRole('combobox');
+    expect(dropdown).toHaveLength(1);
+    //update this test to get rid of "wrapped in act() warning"
+    userEvent.type(dropdown[0], 'The')
+    userEvent.type(dropdown[0], '{arrowdown}')
+    userEvent.type(dropdown[0], '{enter}')
+    expect(dropdown[0].value).toBe('The rad pad had a dad')
+  });
+});
+
 //test localhost/pad/:padid

@@ -34,6 +34,14 @@ describe("Spacecraft Page", () => {
         //assert
         cy.location('pathname').should('eq', '/spacecraft/0')
     });
+
+    it("Should filter by family name", () => {
+        //act
+        cy.get('.header > [href="/spacecraft"]')
+            .click()
+        //assert
+        cy.location('pathname').should('eq', '/spacecraft/0')
+    });
 })
 
 describe("Individual Spacecraft Page", () => {
