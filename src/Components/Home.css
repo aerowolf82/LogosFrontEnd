@@ -1,0 +1,14 @@
+.Home {
+    /* width: 65vw; */
+    /* height: auto; */
+    /* text-align: center; */
+    /* background-color: #385069; */
+    background-image: url('../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100em;
+}
+
+.greeting{
+    color: white;
+}

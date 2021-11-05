@@ -1,19 +1,12 @@
-import logo from './logo.svg';
+import backlogo from './assets/rocketworld.gif';
 import './App.css';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import Home from './Components/Home'
 import Header from './Components/Header'
 //import FavoriteList from './Components/FavoriteList'
 import { useEffect, useState } from 'react'
-//import Context from './Context.js'
-import background from "./assets/background.jpg";
-// import spacecraft from './spacecraft.json';
-import family from './Family.json';
-import pads from './Pads.json';
 import SpaceCraftList from './Components/SpaceCraftList';
 import PadsList from './Components/PadsList.js'
-
-
 
 async function getSpaceCraft() {
   let res = await fetch("http://localhost:3001/spacecraft"); 
@@ -31,10 +24,13 @@ function App() {
   let [filteredSpaceData, setFilteredSpaceData] = useState([]);
   let [filteredPadData, setFilteredPadData] = useState([]);
   let [spaceData, setSpaceData] = useState([]);
-  let [familyData, setFamilyData] = useState([]);
   let [padData, setPadData] = useState([]);
   let [isFilteredSpace, setIsFilteredSpace] = useState(false);
   let [isFilteredPads, setIsFilteredPads] = useState(false);
+  let [isOpenSC,setIsOpenSC] = useState(false);
+  let [isOpenPads,setIsOpenPads] = useState(false);
+  let [favorites, setFavorites] = useState([])
+  let [isFavorited, setIsFavorited] = useState(false)
 
     
   useEffect(() => {
@@ -54,14 +50,13 @@ function App() {
     return () => mounted = false;
   }, [])
 
-console.log('spacedata from app.js',spaceData)
+
   return (
   <Router>
-    {/* <div className ="background" style={{backgroundImage: `url(${background})`, width: '100%'}} > */}
     <div className ="background" >
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={backlogo} className="App-logo" alt="logo" />
           <nav className="Nav">
             <Route path='/:page' component={Header} />  
             <Route exact path='/' component={Header} />
@@ -69,13 +64,20 @@ console.log('spacedata from app.js',spaceData)
         </header>
 
         <Route path="/spacecraft">
-          <SpaceCraftList 
+          <SpaceCraftList
             spaceData = {spaceData} 
-            family = {familyData} 
             setFilteredSpaceData = {setFilteredSpaceData} 
             filteredSpaceData = {filteredSpaceData} 
             isFilteredSpace = {isFilteredSpace} 
-            setIsFilteredSpace={setIsFilteredSpace}/>
+            setIsFilteredSpace={setIsFilteredSpace}
+            isOpenSC = {isOpenSC}
+            setIsOpenSC = {setIsOpenSC}
+            isFavorited = {isFavorited}
+            setIsFavorited = {setIsFavorited}
+            favorites = {favorites}
+            setFavorites = {setFavorites}
+          />
+
         </Route>
         <Route path="/pads">
           <PadsList 
@@ -84,16 +86,18 @@ console.log('spacedata from app.js',spaceData)
             setIsFilteredPads = {setIsFilteredPads}
             filteredPadData = {filteredPadData}
             setFilteredPadData = {setFilteredPadData}
+            isOpenPads = {isOpenPads}
+            setIsOpenPads = {setIsOpenPads}
           />
         </Route>
        {/*  <Route path="/favorites">
           <FavoriteList />
         </Route> */}
         <Route exact path="/">
-          <Home spaceData = {spaceData} family = {familyData} padData = {padData}/>
+          <Home spaceData = {spaceData} padData = {padData}/>
         </Route>
         <Route exact path="/home">
-          <Home spaceData = {spaceData} family = {familyData} padData = {padData}/>
+          <Home spaceData = {spaceData} padData = {padData}/>
         </Route>
       </div>
     </div>

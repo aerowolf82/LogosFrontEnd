@@ -1,89 +1,40 @@
-# SND100 
-## _The Space Nerds Database_
+# SNDB
+The Space Nerds Database
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+## Table of Contents
+The Space Nerds Database provides quick access to historical launch information.
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
-### Table of Contents
-
-
-The Space Nerds Database has quick access to historical launch information.
-
-- [Problem Statement](#Problem-Statement)
-- [Features](#Features)
-- [Installation](#Installation)
-- [Usage Instructions](#Usage-Insructions)
-- [Related Projects](#Related-Projects)
+- [Problem Statement](https://github.com/aerowolf82/LogosFrontEnd#Problem-Statement)
+- [Features](https://github.com/aerowolf82/LogosFrontEnd#Features)
+- [Installation](https://github.com/aerowolf82/LogosFrontEnd#Installation)
+- [Usage Instructions](https://github.com/aerowolf82/LogosFrontEnd#Usage-Insructions)
+- [Related Projects](https://github.com/aerowolf82/LogosFrontEnd#Related-Projects)
 
 ## Problem Statement
-There is a gap with nerds not having all of the space data that they need at the touch of a button. This gap reduces the fun that can be had with ease when it comes to exploring space history. Developing a tool for solving this problem will allow space nerds everywhere to explore space from their home with ease.
-
-
+Space nerds need their historical space data fix but the data needs to be more fun to access. Developing the "Space Nerds Database" (SNDB) web tool is intended to help nerds everywhere appreciate the world's invested legacy in rocketry and human space travel.
 
 ## Features
+- The tool's home page offers links to full listings of either spacecraft or launches. The menu lets nerds select detailed search fields for 'Spacecraft' families or 'Pad' histories.
+- When typing the first few letters of either option a selectable button label appears.
+- Selecting 'spacecraft' displays a list of families such as Mercury, Gemini, Soyuz.
+- Typing a family's first few letters then selecting its label displays matching spacecraft, details, and images on cards selectable for more detail.
+- Selecting the 'Pads' menu option offers a list of pad location details.
 
-- Have a default path of ‘/spacecraft’ that has the names and images of each launch
-- Can dig deeper into ’spacecraft/:id’ for more details.
-- Can search by pad number and will give data about all flights from that pad
-- Stretch goal:
--- Favorite the spacecraft and see a list of favorites (call the database not the api)
-
-
-
-
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
 
 ## Installation
 
-Dillinger requires [Node.js](https://nodejs.org/) v10+ to run.
+Use the npm package manager to seed your local sndb.
 
-Install the dependencies and devDependencies and start the server.
-
-```sh
-cd dillinger
-npm i
-node app
+```bash
+npm install 
 ```
 
-For production environments...
+## Usage
 
-```sh
-npm install --production
-NODE_ENV=production node app
-```
+Browse to http://localhost:3000
 
-## Usage Instructions
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Dillinger is currently extended with the following plugins.
-Instructions on how to use them in your own application are linked below.
-
-| endpoint | what it returns |
-| ------ | ------ |
-| /spacecraft | returns a list of all spacecraft in database |
-| /spacecraft/:name | return a specific spacecraft|
-| /pad | returns a list of known launch pads |
-| /pad/:name | returns details on a specific pad |
-
-
-## Related Projects
-
-[Front End]
-[Back End]
-
-
-
-[//]: # 
-
-   [Front End]: <a href=https://github.com/aerowolf82/LogosFrontEnd>
-   [Back End]: <a href=https://github.com/aerowolf82/LogosBackEnd>
-
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
