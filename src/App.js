@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import Home from './Components/Home'
 import Header from './Components/Header'
-//import FavoriteList from './Components/FavoriteList'
+import FavoritesList from './Components/FavoritesList'
 import { useEffect, useState } from 'react'
 import SpaceCraftList from './Components/SpaceCraftList';
 import PadsList from './Components/PadsList.js'
@@ -77,7 +77,6 @@ function App() {
             favorites = {favorites}
             setFavorites = {setFavorites}
           />
-
         </Route>
         <Route path="/pads">
           <PadsList 
@@ -90,9 +89,12 @@ function App() {
             setIsOpenPads = {setIsOpenPads}
           />
         </Route>
-       {/*  <Route path="/favorites">
-          <FavoriteList />
-        </Route> */}
+        <Route path="/favorites">
+          <FavoritesList
+            isOpenSC = {isOpenSC}
+            setIsOpenSC = {setIsOpenSC}
+          />
+        </Route>
         <Route exact path="/">
           <Home spaceData = {spaceData} padData = {padData}/>
         </Route>

@@ -13,7 +13,6 @@ function AppProvider({children}) {
         if (!favorites.includes(dataObj)) {
             setFavorites(favorites.concat(dataObj));
             setIsFavorited(isFavorited.concat(dataObj.name));
-            console.log(`favorite added`, favorites)
         } 
     }
     function removeFavorite(dataObj){
@@ -23,7 +22,6 @@ function AppProvider({children}) {
         let index2 = isFavorited.indexOf(dataObj.name);
         let temp2 = [...isFavorited.slice(0, index2), ...isFavorited.slice(index2 + 1)];
         setIsFavorited(temp2);
-        console.log(`favorite removed`, favorites)
     }
     const valueObj = {
         favorites,
